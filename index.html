@@ -1,10 +1,145 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My First GitHub Site</title>
+    <title>Para mi 猫猫 🐱</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
+            font-family: 'Arial', cursive, sans-serif;
+            text-align: center;
+            overflow: hidden;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 40px 50px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            max-width: 550px;
+            animation: float 3s ease-in-out infinite;
+            border: 2px solid rgba(255,255,255,0.5);
+            z-index: 10;
+        }
+        .cat-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #ffb3c6;
+            margin-bottom: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-size: 2.8em;
+            margin-bottom: 5px;
+            color: #6c4b7a;
+        }
+        .heart-big {
+            font-size: 3.5em;
+            color: #ff4d6d;
+            display: block;
+            margin-bottom: 5px;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+        p {
+            font-size: 1.2em;
+            color: #3d3d3d;
+            line-height: 1.8;
+        }
+        .signature {
+            margin-top: 15px;
+            font-style: italic;
+            color: #6c757d;
+            font-size: 1.1em;
+        }
+        .cat-emoji-big {
+            font-size: 2em;
+        }
+        /* Floating cats and hearts in background */
+        .floating-items {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .floating-items span {
+            position: absolute;
+            display: block;
+            font-size: 28px;
+            animation: floatUp 10s linear infinite;
+            opacity: 0.5;
+        }
+        /* Animations */
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.2); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0.5; }
+            100% { transform: translateY(-10vh) rotate(720deg); opacity: 0; }
+        }
+        /* Responsive */
+        @media (max-width: 600px) {
+            .card { padding: 30px 20px; }
+            h1 { font-size: 2.2em; }
+            .cat-image { width: 140px; height: 140px; }
+        }
+    </style>
 </head>
 <body>
-    <h1>Hello, World! 👋</h1>
-    <p>My website is now live on GitHub Pages!</p>
+
+    <!-- Floating Cats & Hearts Background -->
+    <div class="floating-items" id="floatingItems"></div>
+
+    <!-- Main Card -->
+    <div class="card">
+        <span class="heart-big">❤️</span>
+        <!-- Random Cat Image from Cataas API -->
+        <img src="https://cataas.com/cat?width=300&height=300" 
+             alt="Random cute cat" 
+             class="cat-image"
+             onerror="this.style.display='none'">
+        <h1>For My Love 🐱</h1>
+        <p>
+            You are the <strong>purrfect</strong> one for me. 😻<br>
+            Every day with you is a dream.<br>
+            I love you <strong>more</strong> than cats love tuna! 🐟<br>
+            You make my heart go <span class="cat-emoji-big">😺💓</span>
+        </p>
+        <p class="signature">- Forever yours, Pepe 🐾</p>
+    </div>
+
+    <script>
+        // Mixed floating emojis: cats + hearts
+        const emojis = ['🐱', '❤️', '😺', '💖', '🐈', '💕', '🐾', '💗', '😻', '💘'];
+        const container = document.getElementById('floatingItems');
+        for (let i = 0; i < 40; i++) {
+            const span = document.createElement('span');
+            span.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            span.style.left = Math.random() * 100 + '%';
+            span.style.animationDuration = (7 + Math.random() * 7) + 's';
+            span.style.fontSize = (18 + Math.random() * 32) + 'px';
+            span.style.animationDelay = (Math.random() * 8) + 's';
+            container.appendChild(span);
+        }
+    </script>
+
 </body>
 </html>
